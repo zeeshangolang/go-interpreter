@@ -17,12 +17,10 @@ func (l *Lexer) NextToken() tokens.Token {
 
 	l.SkipWhiteSpaces()
 	switch l.ch {
-	case '=':
-		tok = newToken(tokens.ASSIGN, l.ch)
+
 	case '-':
 		tok = newToken(tokens.MINUS, l.ch)
-	case '!':
-		tok = newToken(tokens.BANG, l.ch)
+
 	case '/':
 		tok = newToken(tokens.SLASH, l.ch)
 	case '*':
@@ -45,9 +43,30 @@ func (l *Lexer) NextToken() tokens.Token {
 		tok = newToken(tokens.RBARCE, l.ch)
 	case ';':
 		tok = newToken(tokens.SEMICOLON, l.ch)
+
 	case 0:
 		tok.Literal = ""
 		tok.Type = tokens.EOF
+	case '=':
+		if l.PeekChar() == '=' {
+			ch := l.ch
+			l.ReadChar()
+			literal := string(ch) + string(l.ch)
+			tok = tokens.Token{Type: tokens.EQ, Literal: literal}
+
+		} else {
+			tok = newToken(tokens.ASSIGN, l.ch)
+		}
+	case '!':
+		if l.PeekChar() == '=' {
+			ch := l.ch
+			l.ReadChar()
+			literal := string(ch) + string(l.ch)
+			tok = tokens.Token{Type: tokens.NEQ, Literal: literal}
+
+		} else {
+			tok = newToken(tokens.BANG, l.ch)
+		}
 	default:
 		if isLetter(l.ch) {
 			tok.Literal = l.ReadIdentifier()
@@ -66,6 +85,15 @@ func (l *Lexer) NextToken() tokens.Token {
 
 	l.ReadChar()
 	return tok
+
+}
+
+func (l *Lexer) PeekChar() byte {
+	if l.Readposition >= len(l.Input) {
+		return 0
+	} else {
+		return l.Input[l.Readposition]
+	}
 
 }
 

@@ -16,6 +16,16 @@ func TestNextToken(t *testing.T) {
     let result = add(five, ten);
 	!-/*5
 	5 < 10 > 5
+
+	if (5 < 10) {
+	return true;
+	} else {
+	 return false
+	 }
+
+	 10 == 10
+	 10 != 10
+
     `
 
 	testss := []struct {
@@ -68,6 +78,28 @@ func TestNextToken(t *testing.T) {
 		{tokens.INT, "10"},
 		{tokens.GTHAN, ">"},
 		{tokens.INT, "5"},
+		{tokens.IF, "if"},
+		{tokens.LPARAN, "("},
+		{tokens.INT, "5"},
+		{tokens.LTHAN, "<"},
+		{tokens.INT, "10"},
+		{tokens.RPARAN, ")"},
+		{tokens.LBRACE, "{"},
+		{tokens.RETURN, "return"},
+		{tokens.TRUE, "true"},
+		{tokens.SEMICOLON, ";"},
+		{tokens.RBARCE, "}"},
+		{tokens.ELSE, "else"},
+		{tokens.LBRACE, "{"},
+		{tokens.RETURN, "return"},
+		{tokens.FALSE, "false"},
+		{tokens.RBARCE, "}"},
+		{tokens.INT, "10"},
+		{tokens.EQ, "=="},
+		{tokens.INT, "10"},
+		{tokens.INT, "10"},
+		{tokens.NEQ, "!="},
+		{tokens.INT, "10"},
 		{tokens.EOF, ""},
 	}
 	//l  := New(input)
