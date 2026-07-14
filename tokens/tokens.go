@@ -23,15 +23,18 @@ const (
 
 	COMMA     = ","
 	SEMICOLON = ";"
+	COLON     = ":"
 
-	LPARAN = "("
-	RPARAN = ")"
-	LBRACE = "{"
-	RBARCE = "}"
-	LTHAN  = "<"
-	GTHAN  = ">"
-	EQ     = "=="
-	NEQ    = "!="
+	LPARAN   = "("
+	RPARAN   = ")"
+	LBRACE   = "{"
+	RBARCE   = "}"
+	LBRACKET = "["
+	RBRACKET = "]"
+	LTHAN    = "<"
+	GTHAN    = ">"
+	EQ       = "=="
+	NEQ      = "!="
 
 	FUNCTION = "FUNCTION"
 	LET      = "LET"
@@ -39,6 +42,7 @@ const (
 	FALSE    = "FALSE"
 	IF       = "IF"
 	ELSE     = "ELSE"
+	STRING   = "STRING"
 	RETURN   = "RETURN"
 )
 
